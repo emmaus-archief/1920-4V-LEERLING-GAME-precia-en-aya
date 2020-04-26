@@ -79,10 +79,9 @@ var tekenKogel = function(x, y) {
  * @param {number} y y-coördinaat
  */
 var tekenSpeler = function(x, y) {
-  fill("white");
+  fill(173, 205, 255);
   ellipse(mouseX, 600, 50, 50);
 };
-
 
 /**
  * Updatet globale variabelen met positie van vijand of tegenspeler
