@@ -75,9 +75,10 @@ var tekenKogel = function(x, y) {
 
 /**
  * Tekent de speler
- * @param {number} x x-coördinaat
+ * @param {number} xcoördinaat
  * @param {number} y y-coördinaat
  */
+
 var tekenSpeler = function(x, y) {
   fill(173, 205, 255);
   ellipse(mouseX, 600, 50, 50);
