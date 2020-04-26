@@ -47,7 +47,7 @@ var score = 0; // aantal behaalde punten
  */
 var tekenVeld = function () {
   fill("purple");
-  rect(20, 20, width - 2 * 20, height - 2 * 20);
+  rect(0, 0, 1280, 720);
 };
 
 
