@@ -46,8 +46,7 @@ var score = 0; // aantal behaalde punten
  * Tekent het speelveld
  */
 var tekenVeld = function () {
-  fill (255, 253, 186);
-  rect(0, 0, 1280, 720);
+  
 };
 
 
@@ -85,16 +84,16 @@ var tekenKogel = function(x, y) {
 
  
 var tekenSpeler = function(x, y) {
-  fill(173, 205, 255);
-  ellipse(mouseX, 600, 50, 50);
+  /*fill(173, 205, 255);
+  ellipse(mouseX, 600, 50, 50);*/
 };
 
-/*var img = 0;
+var img = 0;
 
 function preload() {
     img = loadImage ("taart.png");
 
-}*/
+}
 
 /**
  * Updatet globale variabelen met positie van vijand of tegenspeler
@@ -173,7 +172,7 @@ function setup() {
   createCanvas(1280, 720);
 
   // Kleur de achtergrond blauw, zodat je het kunt zien
-  background('blue');
+  background(255, 253, 186);
 }
 
 
@@ -184,7 +183,7 @@ function setup() {
  */
 function draw() {
 
-    /*image(img, mouseX, mouseY, 50, 50);*/
+    image(img, mouseX, 650, 50, 50);
 
   switch (spelStatus) {
     case SPELEN:
