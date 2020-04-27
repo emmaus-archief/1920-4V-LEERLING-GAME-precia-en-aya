@@ -89,6 +89,13 @@ var tekenSpeler = function(x, y) {
   ellipse(mouseX, 600, 50, 50);
 };
 
+/*var img = 0;
+
+function preload() {
+    img = loadImage ("taart.png");
+
+}*/
+
 /**
  * Updatet globale variabelen met positie van vijand of tegenspeler
  */
@@ -176,6 +183,9 @@ function setup() {
  * uitgevoerd door de p5 library, nadat de setup functie klaar is
  */
 function draw() {
+
+    /*image(img, mouseX, mouseY, 50, 50);*/
+
   switch (spelStatus) {
     case SPELEN:
       beweegVijand();
