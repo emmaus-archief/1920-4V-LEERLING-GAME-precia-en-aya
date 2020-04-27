@@ -172,7 +172,7 @@ function setup() {
   createCanvas(1280, 720);
 
   // Kleur de achtergrond blauw, zodat je het kunt zien
-  background(255, 253, 186);
+  
 }
 
 
@@ -182,9 +182,15 @@ function setup() {
  * uitgevoerd door de p5 library, nadat de setup functie klaar is
  */
 function draw() {
+background(255, 253, 186);
 
     image(img, mouseX, 650, 50, 50);
-
+if (mouseX >= 1235) {
+    mouseX = 1235; 
+}
+if (mouseX <= 0){
+    mouseX = 0;
+}
   switch (spelStatus) {
     case SPELEN:
       beweegVijand();
