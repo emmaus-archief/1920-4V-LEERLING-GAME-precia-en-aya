@@ -28,7 +28,7 @@ var spelerY = 100; // y-positie van speler
 var kogelX = 0;    // x-positie van kogel
 var kogelY = 0;    // y-positie van kogel
 
-var vijandX = 0;   // x-positie van vijand
+var vijandX = 200;   // x-positie van vijand
 var vijandY = 0;   // y-positie van vijand
 
 var score = 0; // aantal behaalde punten
@@ -83,6 +83,7 @@ var tekenKogel = function(x, y) {
  * @param {number} y y-coördinaat
  */
 
+ 
 var tekenSpeler = function(x, y) {
   fill(173, 205, 255);
   ellipse(mouseX, 600, 50, 50);
@@ -93,7 +94,10 @@ var tekenSpeler = function(x, y) {
  */
 
 var beweegVijand = function() {
-   
+   vijandY = vijandY + 5;
+    fill("red"); 
+    ellipse(Math.floor(Math.random() * 1281), vijandY, 20, 20); 
+
 };
 
 
@@ -129,9 +133,16 @@ var checkVijandGeraakt = function() {
  * bijvoorbeeld door botsing met vijand
  * @returns {boolean} true als speler is geraakt
  */
-var checkSpelerGeraakt = function() {
-    
+var checkSpelerGeraakt = function(x,y) {
+
+    var vijandX = spelerX 
+    boolean(vijandX);  //returns false
   return false;
+   
+  if  (boolean = false)  //dus als de vijand de speler raakt
+    PrintIn("GAME OVER");
+
+
 };
 
 
