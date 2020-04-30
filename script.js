@@ -91,7 +91,7 @@ var tekenSpeler = function(x, y) {
 var img = 0;
 
 function preload() {
-    img = loadImage ("taart.png");
+    img = loadImage ("cake 5.png");
 
 }
 
