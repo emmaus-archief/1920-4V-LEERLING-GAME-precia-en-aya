@@ -184,9 +184,9 @@ function setup() {
 function draw() {
 background(255, 253, 186);
 
-    image(img, mouseX, 650, 50, 50);
-if (mouseX >= 1235) {
-    mouseX = 1235; 
+    image(img, mouseX, 600, 150, 100);
+if (mouseX >= 1130) {
+    mouseX = 1130; 
 }
 if (mouseX <= 0){
     mouseX = 0;
