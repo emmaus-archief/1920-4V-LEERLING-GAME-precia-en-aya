@@ -96,7 +96,6 @@ function preload() {
 }
 
 function tekenScore() {
-
     text(score, 50, 50, 50, 50);
 
 }
