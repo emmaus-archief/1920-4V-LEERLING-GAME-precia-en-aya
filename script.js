@@ -95,6 +95,12 @@ function preload() {
 
 }
 
+function tekenScore() {
+
+    text(score, 50, 50, 50, 50);
+
+}
+
 /**
  * Updatet globale variabelen met positie van vijand of tegenspeler
  */
@@ -161,6 +167,9 @@ var checkGameOver = function() {
   return false;
 };
 
+function updateScore () {
+    score = score + 50;
+}
 
 /**
  * setup
@@ -171,6 +180,7 @@ function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
 
+  setInterval(updateScore,1000);
   // Kleur de achtergrond blauw, zodat je het kunt zien
   
 }
@@ -211,6 +221,7 @@ if (mouseX <= 0){
       tekenVijand(vijandX, vijandY);
       tekenKogel(kogelX, kogelY);
       tekenSpeler(spelerX, spelerY);
+      tekenScore();
 
       if (checkGameOver()) {
         spelStatus = GAMEOVER;
