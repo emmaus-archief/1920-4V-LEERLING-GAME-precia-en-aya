@@ -96,8 +96,13 @@ function preload() {
 }
 
 function tekenScore() {
-    text(score, 50, 50, 50, 50);
 
+    fill(255, 172, 94);
+    rect(0, 0, 200, 80);
+
+    fill(0, 0, 0);
+    textSize (60);
+    text(score, 40, 60);
 }
 
 /**
@@ -105,7 +110,7 @@ function tekenScore() {
  */
 
 var beweegVijand = function() {
-   vijandY = vijandY + 5;
+   vijandY = vijandY + 1;
     fill("red"); 
     ellipse(Math.floor(Math.random() * 1281), vijandY, 20, 20); 
 
