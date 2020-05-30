@@ -22,14 +22,17 @@ const SPELEN = 1;
 const GAMEOVER = 2;
 var spelStatus = SPELEN;
 
+var plaatjeAppel;   // in deze variabelen stoppen we in de functie
+var plaatjeCake;    // preload() de afbeeldingen
+
 var spelerX = 200; // x-positie van speler
 var spelerY = 100; // y-positie van speler
 
 var kogelX = 0;    // x-positie van kogel
 var kogelY = 0;    // y-positie van kogel
 
-var vijandX = 0;   // x-positie van vijand
-var vijandY = 0;   // y-positie van vijand
+var vijandenX = [];   // x-posities van vijanden
+var vijandenY = [];   // y-posities van vijanden
 
 var score = 0; // aantal behaalde punten
 
@@ -57,11 +60,11 @@ var tekenVeld = function () {
  */
 
  
-var tekenVijand = function(x, y) {
-    vijandY = vijandY + 5;
-    fill("red"); 
-    ellipse(Math.floor(Math.random() * 1281), vijandY, 20, 20); 
-
+var tekenVijanden = function() {
+    for (var teller = 0; teller < vijandenX.length; teller++) {
+        fill("red"); 
+        ellipse(vijandenX[teller], vijandenY[teller], 20, 20); 
+    }
 };
 
 
@@ -78,7 +81,7 @@ var tekenKogel = function(x, y) {
 
 /**
  * Tekent de speler
- * @param {number} xcoördinaat
+ * @param {number} x x-coördinaat
  * @param {number} y y-coördinaat
  */
 
@@ -88,10 +91,11 @@ var tekenSpeler = function(x, y) {
   ellipse(mouseX, 600, 50, 50);*/
 };
 
-var img = 0;
-
 function preload() {
-    img = loadImage ("afbeeldingen/cake 5.png");
+    // ik maak nu gebruik van een preciezere variabele
+    // maak er meer aan voor meer plaatjes
+    plaatjeCake = loadImage ("afbeeldingen/cake.png");
+    plaatjeAppel = loadImage("afbeeldingen/appel.png");
 
 }
 
@@ -110,10 +114,13 @@ function tekenScore() {
  */
 
 var beweegVijand = function() {
-   vijandY = vijandY + 1;
-    fill("red"); 
-    ellipse(Math.floor(Math.random() * 1281), vijandY, 20, 20); 
-
+    for (var teller = 0; teller < vijandenX.length; teller++) {
+        vijandenY[teller] = vijandenY[teller] + 5;
+        if (vijandenY[teller] > 800) {
+            vijandenY[teller] = -50;
+            vijandenX[teller] = random(20, 1200);
+        }
+    }
 };
 
 
@@ -155,8 +162,8 @@ var checkSpelerGeraakt = function(x,y) {
     boolean(vijandX);  //returns false
   return false;
    
-  if  (boolean = false)  //dus als de vijand de speler raakt
-    PrintIn("GAME OVER");
+  //if  (boolean = false)  //dus als de vijand de speler raakt
+  //  PrintIn("GAME OVER");
 
 
 };
@@ -187,6 +194,13 @@ function setup() {
   setInterval(updateScore,1000);
   // Kleur de achtergrond blauw, zodat je het kunt zien
   
+  // maak 10 keer nieuwe x en y waarden voor de vijanden
+  // en voeg deze achteraan de array toe.
+  for (var teller = 0; teller < 10; teller++) {
+    vijandenX.push(random(20, 1200));
+    vijandenY.push(-50);
+  }
+  
 }
 
 
@@ -196,17 +210,20 @@ function setup() {
  * uitgevoerd door de p5 library, nadat de setup functie klaar is
  */
 function draw() {
-background(255, 253, 186);
 
-    image(img, mouseX, 600, 150, 100);
-if (mouseX >= 1130) {
-    mouseX = 1130; 
-}
-if (mouseX <= 0){
-    mouseX = 0;
-}
   switch (spelStatus) {
     case SPELEN:
+      background(255, 253, 186);
+
+      image(plaatjeAppel, mouseX, 600, 150, 100);
+      if (mouseX >= 1130) {
+          mouseX = 1130; 
+      }
+      if (mouseX <= 0){
+          mouseX = 0;
+      }
+
+
       beweegVijand();
       beweegKogel();
       beweegSpeler();
@@ -222,7 +239,7 @@ if (mouseX <= 0){
       }
 
       tekenVeld();
-      tekenVijand(vijandX, vijandY);
+      tekenVijanden();
       tekenKogel(kogelX, kogelY);
       tekenSpeler(spelerX, spelerY);
       tekenScore();
