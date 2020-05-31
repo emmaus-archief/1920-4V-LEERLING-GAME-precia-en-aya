@@ -22,6 +22,9 @@ const SPELEN = 1;
 const GAMEOVER = 2;
 var spelStatus = SPELEN;
 
+var plaatjeAppel; //in deze variabelen stoppen we de functie
+var plaatjeCake; // preload() de afbeeldingen
+
 var spelerX = 200; // x-positie van speler
 var spelerY = 100; // y-positie van speler
 
@@ -88,10 +91,9 @@ var tekenSpeler = function(x, y) {
   ellipse(mouseX, 600, 50, 50);*/
 };
 
-var img = 0;
-
 function preload() {
-    img = loadImage ("afbeeldingen/cake.png");
+    plaatjeCake = loadImage ("afbeeldingen/cake.png");
+    plaatjeAppel = loadImage ("afbeeldingen/appel.png");
 
 }
 
@@ -198,7 +200,7 @@ function setup() {
 function draw() {
 background(255, 253, 186);
 
-    image(img, mouseX, 600, 150, 100);
+    image(plaatjeCake, mouseX, 600, 150, 100);
 if (mouseX >= 1130) {
     mouseX = 1130; 
 }
