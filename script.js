@@ -195,7 +195,7 @@ function setup() {
   
   // maak 10 keer een nieuwe x en y waarden voor de vijanden'
   // en voeg deze achter aan de array toe
-   for (var teller = 0; teller < 10; teller++) {        
+   for (var teller = 0; teller < 3; teller++) {        
      vijandenX.push(random(20, 1200));
      vijandenY.push(random(0, -1200));
 
@@ -224,6 +224,8 @@ if (mouseX >= 1130) {
 if (mouseX <= 0){
     mouseX = 0;
 }
+
+
 
 
       beweegVijand();
