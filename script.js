@@ -24,6 +24,8 @@ var spelStatus = SPELEN;
 
 var plaatjeAppel; //in deze variabelen stoppen we de functie
 var plaatjeCake; // preload() de afbeeldingen
+var plaatjeKers;
+var plaatjePeer;
 
 var spelerX = 200; // x-positie van speler
 var spelerY = 100; // y-positie van speler
@@ -31,8 +33,13 @@ var spelerY = 100; // y-positie van speler
 var kogelX = 0;    // x-positie van kogel
 var kogelY = 0;    // y-positie van kogel
 
-var vijandenX = [];   // x-positie van vijanden
-var vijandenY = [];   // y-positie van vijanden
+
+var vijandenX1 = []; // x-positie van Appel 
+var vijandenX2 = []; // x-positie van kers
+var vijandenX3 = []; // x-positie van peer
+var vijandenY1 = []; // y-positie van appel
+var vijandenY2 = []; // y-positie van kers
+var vijandenY3 = []; // y-positie van peer
 
 var score = 0; // aantal behaalde punten
 
@@ -61,9 +68,16 @@ var tekenVeld = function () {
 
  
 var tekenVijanden = function() {
-    for (var teller = 0; teller < vijandenX.length; teller++) {   
-    image(plaatjeAppel, vijandenX[teller], vijandenY[teller], 20, 20); 
+    for (var teller = 0; teller < vijandenX1.length; teller++) {   
+    image(plaatjeAppel, vijandenX1[teller], vijandenY1[teller], 150, 150); 
     }
+    //plaatjeappel
+    for (var teller = 0; teller < vijandenX2.length; teller++) {   
+    image(plaatjeKers, vijandenX2[teller], vijandenY2[teller], 200, 200); 
+    } //plaatje kers
+    for (var teller = 0; teller < vijandenX3.length; teller++) {   
+    image(plaatjePeer, vijandenX3[teller], vijandenY3[teller], 120, 120); 
+    } //plaatje peer
 };
 
 
@@ -93,6 +107,8 @@ var tekenSpeler = function(x, y) {
 function preload() {
     plaatjeCake = loadImage ("afbeeldingen/cake.png");
     plaatjeAppel = loadImage ("afbeeldingen/appel.png");
+    plaatjeKers = loadImage ("afbeeldingen/kers.png");
+    plaatjePeer = loadImage ("afbeeldingen/peer.png");
 
 }
 
@@ -112,11 +128,26 @@ function tekenScore() {
  */
 
 var beweegVijand = function() {
-     for (var teller = 0; teller < vijandenX.length; teller++) {        
-         vijandenY[teller] = vijandenY[teller] + 5;
-         if (vijandenY[teller] > 800) {
-             vijandenY[teller] = random(0, -1200); // ik weet niet of de getallen kloppen ook bij rij 199!!!!!!!!!
-             vijandenX[teller] = random(20, 1200);
+     for (var teller = 0; teller < vijandenX1.length; teller++) {        
+         vijandenY1[teller] = vijandenY1[teller] + 5;
+         if (vijandenY1[teller] > 800) {
+             vijandenY1[teller] = random(0, -1200); // ik weet niet of de getallen kloppen ook bij rij 199!!!!!!!!!
+             vijandenX1[teller] = random(20, 1200);
+         }
+    }
+
+     for (var teller = 0; teller < vijandenX2.length; teller++) {        
+         vijandenY2[teller] = vijandenY2[teller] + 10;
+         if (vijandenY2[teller] > 800) {
+             vijandenY2[teller] = random(0, -1200); // ik weet niet of de getallen kloppen ook bij rij 199!!!!!!!!!
+             vijandenX2[teller] = random(20, 1200);
+         }
+    }
+     for (var teller = 0; teller < vijandenX3.length; teller++) {        
+         vijandenY3[teller] = vijandenY3[teller] + 5;
+         if (vijandenY3[teller] > 800) {
+             vijandenY3[teller] = random(0, -1200); // ik weet niet of de getallen kloppen ook bij rij 199!!!!!!!!!
+             vijandenX3[teller] = random(20, 1200);
          }
     }
 };
@@ -194,13 +225,26 @@ function setup() {
   
   // maak 10 keer een nieuwe x en y waarden voor de vijanden'
   // en voeg deze achter aan de array toe
-   for (var teller = 0; teller < 3; teller++) {        
-     vijandenX.push(random(20, 1200));
-     vijandenY.push(random(0, -1200));
+   for (var teller = 0; teller < 4; teller++) {        
+     vijandenX1.push(random(20, 1200));
+     vijandenY1.push(random(0, -1200));
 
     }
    
 
+    for (var teller = 0; teller < 1; teller++) {        
+     vijandenX2.push(random(20, 1200));
+     vijandenY2.push(random(0, -1200));
+
+    }
+   
+
+    for (var teller = 0; teller < 4; teller++) {        
+     vijandenX3.push(random(20, 1200));
+     vijandenY3.push(random(0, -1200));
+
+    }
+   
   
 }
 
