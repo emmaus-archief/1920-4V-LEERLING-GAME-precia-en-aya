@@ -61,9 +61,8 @@ var tekenVeld = function () {
 
  
 var tekenVijanden = function() {
-    for (var teller = 0; teller < vijandenX.length; teller++) {        
-    fill("red"); 
-    ellipse(vijandenX[teller], vijandenY[teller], 20, 20); 
+    for (var teller = 0; teller < vijandenX.length; teller++) {   
+    image(plaatjeAppel, vijandenX[teller], vijandenY[teller], 20, 20); 
     }
 };
 
@@ -223,6 +222,8 @@ if (mouseX >= 1130) {
 if (mouseX <= 0){
     mouseX = 0;
 }
+
+
 
 
 
