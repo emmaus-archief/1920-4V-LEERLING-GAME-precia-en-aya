@@ -99,11 +99,12 @@ function preload() {
 function tekenScore() {
 
     fill(255, 172, 94);
-    rect(0, 0, 200, 80);
+    rect(0, 0, 320, 80);
 
     fill(0, 0, 0);
-    textSize (60);
-    text(score, 40, 60);
+    textSize (45);
+    text(score, 145, 55);
+    text("score:", 20, 55);
 }
 
 /**
