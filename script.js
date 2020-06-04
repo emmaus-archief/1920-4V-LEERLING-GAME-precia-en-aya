@@ -69,7 +69,7 @@ var tekenVeld = function () {
  
 var tekenVijanden = function() {
     for (var teller = 0; teller < vijandenX1.length; teller++) {   
-    image(plaatjeAppel, vijandenX1[teller], vijandenY1[teller], 150, 150); 
+    image(plaatjeAppel, vijandenX1[teller], vijandenY1[teller], 170, 150); 
     }
     //plaatjeappel
     for (var teller = 0; teller < vijandenX2.length; teller++) {   
@@ -197,6 +197,8 @@ var checkSpelerGeraakt = function(x,y) {
 
 };
 
+// ook als de kers is geraakt score + 1000
+
 
 /**
  * Zoekt uit of het spel is afgelopen
@@ -208,7 +210,7 @@ var checkGameOver = function() {
 };
 
 function updateScore () {
-    score = score + 50;
+    score = score + 10;
 }
 
 /**
