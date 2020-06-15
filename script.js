@@ -199,6 +199,13 @@ var checkSpelerGeraakt = function(x,y) {
 
         return teruggeefwaarde;
 
+        function verwijderVijand(nummer) {
+            console.log("verwijder vijand " + nummer);
+            vijandenX1.splice(nummer, 1);
+            vijandenY1.splice(nummer, 1)
+            vijandenSnelheid.splice(nummer, 1);
+}
+
    /* var vijandX = spelerX 
     boolean(vijandX);  //returns false
   return false;
