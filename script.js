@@ -187,12 +187,24 @@ var checkVijandGeraakt = function() {
  */
 var checkSpelerGeraakt = function(x,y) {
 
-    var vijandX = spelerX 
+    for (var i =0; i < vijandenX1.length; i++) {
+        if (CollideRectRect(vijandenX1[vijandNummer], vijandenY1[vijandNummer], 170, spelerX[i],spelerY[i], 200)) {
+            teruggeefwaarde = true;
+        
+            verwijderVijand (i);
+
+            console.log("Speler" + vijandNummer + "geraakt door vijand" + i);
+        }
+    }
+
+        return teruggeefwaarde;
+
+   /* var vijandX = spelerX 
     boolean(vijandX);  //returns false
   return false;
    
   if  (boolean = false)  //dus als de vijand de speler raakt
-    PrintIn("GAME OVER");
+    PrintIn("GAME OVER"); */
 
 
 };
