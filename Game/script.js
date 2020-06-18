@@ -39,11 +39,13 @@ var spelerY = 100; // y-positie van speler
 const SPELERBREEDTE = 150;
 const SPELERHOOGTE = 100;
 
+
+
 var kogelX = 0;    // x-positie van kogel
 var kogelY = 0;    // y-positie van kogel
 
 
-var vijandenX1 = []; // x-positie van Appel 
+var vijandenX1 = []; // x-positie van Appel
 var vijandenX2 = []; // x-positie van kers
 var vijandenX3 = []; // x-positie van peer
 var vijandenY1 = []; // y-positie van appel
@@ -69,7 +71,7 @@ var aantalKersen = 0;
  * Tekent het speelveld
  */
 var tekenVeld = function () {
-  
+
 };
 
 
@@ -79,17 +81,17 @@ var tekenVeld = function () {
  * @param {number} y y-coördinaat
  */
 
- 
+
 var tekenVijanden = function() {
-    for (var teller = 0; teller < vijandenX1.length; teller++) {   
-      image(plaatjeAppel, vijandenX1[teller], vijandenY1[teller], APPELBREEDTE, APPELHOOGTE); 
+    for (var teller = 0; teller < vijandenX1.length; teller++) {
+      image(plaatjeAppel, vijandenX1[teller], vijandenY1[teller], APPELBREEDTE, APPELHOOGTE);
     }
     //plaatjeappel
-    for (var teller = 0; teller < vijandenX2.length; teller++) {   
-      image(plaatjeKers, vijandenX2[teller], vijandenY2[teller], 200, 200); 
+    for (var teller = 0; teller < vijandenX2.length; teller++) {
+      image(plaatjeKers, vijandenX2[teller], vijandenY2[teller], 200, 200);
     } //plaatje kers
-    for (var teller = 0; teller < vijandenX3.length; teller++) {   
-      image(plaatjePeer, vijandenX3[teller], vijandenY3[teller], 120, 120); 
+    for (var teller = 0; teller < vijandenX3.length; teller++) {
+      image(plaatjePeer, vijandenX3[teller], vijandenY3[teller], 120, 120);
     } //plaatje peer
 };
 
@@ -111,14 +113,14 @@ var tekenKogel = function(x, y) {
  * @param {number} y y-coördinaat
  */
 
- 
+
 var tekenSpeler = function(x, y) {
   /*fill(173, 205, 255);
   ellipse(mouseX, 600, 50, 50);*/
         // dit stukje zou mooi in 'tekenSpeler' kunnen
       image(plaatjeCake, mouseX, 600, 150, 100);
       if (mouseX >= 1130) {
-          mouseX = 1130; 
+          mouseX = 1130;
       }
       if (mouseX <= 0){
           mouseX = 0;
@@ -127,13 +129,6 @@ var tekenSpeler = function(x, y) {
 
 };
 
-function preload() {
-    // plaatjeCake = loadImage ("./afbeeldingen/cake.png");
-    // plaatjeAppel = loadImage ("./afbeeldingen/appel.png");
-    // plaatjeKers = loadImage ("./afbeeldingen/kers.png");
-    // plaatjePeer = loadImage ("./afbeeldingen/peer.png");
-
-}
 
 function tekenScore() {
 
@@ -142,8 +137,8 @@ function tekenScore() {
 
     fill(0, 0, 0);
     textSize (45);
-    text(score, 145, 55);
-    text("score:", 20, 55);
+    text("score", 145, 55, 0, 0);
+    text("score:", 20, 55, 0, 0);
 }
 
 /**
@@ -151,7 +146,7 @@ function tekenScore() {
  */
 
 var beweegVijand = function() {
-     for (var teller = 0; teller < vijandenX1.length; teller++) {        
+     for (var teller = 0; teller < vijandenX1.length; teller++) {
          vijandenY1[teller] = vijandenY1[teller] + 5;
          if (vijandenY1[teller] > 800) {
              vijandenY1[teller] = random(0, -1200); // ik weet niet of de getallen kloppen ook bij rij 199!!!!!!!!!
@@ -159,14 +154,14 @@ var beweegVijand = function() {
          }
     }
 
-     for (var teller = 0; teller < vijandenX2.length; teller++) {        
+     for (var teller = 0; teller < vijandenX2.length; teller++) {
          vijandenY2[teller] = vijandenY2[teller] + 10;
          if (vijandenY2[teller] > 800) {
              vijandenY2[teller] = random(0, -1200); // ik weet niet of de getallen kloppen ook bij rij 199!!!!!!!!!
              vijandenX2[teller] = random(20, 1200);
          }
     }
-     for (var teller = 0; teller < vijandenX3.length; teller++) {        
+     for (var teller = 0; teller < vijandenX3.length; teller++) {
          vijandenY3[teller] = vijandenY3[teller] + 5;
          if (vijandenY3[teller] > 800) {
              vijandenY3[teller] = random(0, -1200); // ik weet niet of de getallen kloppen ook bij rij 199!!!!!!!!!
@@ -175,53 +170,35 @@ var beweegVijand = function() {
     }
 };
 
-
-/**
- * Updatet globale variabelen met positie van kogel of bal
- */
-var beweegKogel = function() {
-
-};
-
-
-/**
- * Kijkt wat de toetsen/muis etc zijn.
- * Updatet globale variabele spelerX en spelerY
- */
-var beweegSpeler = function() {
-
-};
-
-
-/**
- * Zoekt uit of de vijand is geraakt
- * @returns {boolean} true als vijand is geraakt
- */
-var checkVijandGeraakt = function() {
-
-  return false;
-};
-
-function verwijderVijandenX1(nummer) {
-    console.log("verwijder vijand " + nummer);
-    vijandenX1.splice(nummer, 1);
-    vijandenY1.splice(nummer, 1)
-
-}
-
 /**
  * Zoekt uit of de speler is geraakt
  * bijvoorbeeld door botsing met vijand
  * @returns {boolean} true als speler is geraakt
  */
+
 var checkSpelerGeraakt = function() {
-    //plaatjeappel
-    for (var teller = 0; teller < vijandenX1.length; teller++) {   
-        var heeftBotsing = collideRectRect(spelerX, spelerY, SPELERBREEDTE, SPELERHOOGTE,
-                                            vijandenX1[teller], vijandenY1[teller], APPELBREEDTE, APPELHOOGTE)
-        if (heeftBotsing === true) {
-            verwijderVijandenX1(teller)
-            console.log(heeftBotsing + teller);
+    var geraakt = false;
+
+    for (var teller = 0; teller < vijandenX1.length; teller++) {
+       if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX1[teller], vijandenY1[teller], APPELBREEDTE, APPELHOOGTE)) {
+            geraakt = ["appel", teller];
+        }
+    }
+
+    for (var teller = 0; teller < vijandenX2.length; teller++) {
+      if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX2[teller], vijandenY2[teller], KERSBREEDTE, KERSHOOGTE)) {
+            geraakt = ["kers", teller];
+        }
+    }
+    for (var teller = 0; teller < vijandenX3.length; teller++) {
+       if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX3[teller], vijandenY3[teller], PEERBREEDTE, PEERHOOGTE)) {
+            geraakt = ["peer", teller];
+        }
+    }
+
+    return geraakt;
+}
+
 
             //stel dit is een kers dan
             // laat kers verdwijnen
@@ -230,24 +207,8 @@ var checkSpelerGeraakt = function() {
             // bij schieten (muisklik): kijk of aantalKersen > 0
             // verlaag aantalKersen met 1
             // schiet een kogel met kers als plaatje
-        }
-
-    }
-
-   
-
-    //plaatje kers
-    for (var teller = 0; teller < vijandenX2.length; teller++) {   
-      image(plaatjeKers, vijandenX2[teller], vijandenY2[teller], KERSBREEDTE, KERSHOOGTE); 
-    } 
-    
-    //plaatje peer
-    for (var teller = 0; teller < vijandenX3.length; teller++) {   
-      image(plaatjePeer, vijandenX3[teller], vijandenY3[teller], PEERBREEDTE, PEERHOOGTE); 
-    } 
 
 
-};
 
 // ook als de kers is geraakt score + 1000
 
@@ -257,7 +218,7 @@ var checkSpelerGeraakt = function() {
  * @returns {boolean} true als het spel is afgelopen
  */
 var checkGameOver = function() {
-    
+
   return false;
 };
 
@@ -270,41 +231,44 @@ function updateScore () {
  * de code in deze functie wordt één keer uitgevoerd door
  * de p5 library, zodra het spel geladen is in de browser
  */
+function preload() {
+    plaatjeCake = loadImage("afbeeldingen/cake.png");
+    plaatjeAppel = loadImage("afbeeldingen/appel.png");
+    plaatjeKers = loadImage("afbeeldingen/kers.png");
+    plaatjePeer = loadImage("afbeeldingen/peer.png");
+}
+
 function setup() {
-    plaatjeCake = loadImage ("afbeeldingen/cake.png");
-    plaatjeAppel = loadImage ("afbeeldingen/appel.png");
-    plaatjeKers = loadImage ("afbeeldingen/kers.png");
-    plaatjePeer = loadImage ("afbeeldingen/peer.png");
 
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
 
   setInterval(updateScore,1000);
   // Kleur de achtergrond blauw, zodat je het kunt zien
-  
+
   // maak 10 keer een nieuwe x en y waarden voor de vijanden'
   // en voeg deze achter aan de array toe
-   for (var teller = 0; teller < 4; teller++) {        
+   for (var teller = 0; teller < 4; teller++) {
       vijandenX1.push(random(20, 1200));
       vijandenY1.push(random(0, -1200));
 
     }
-   
 
-    for (var teller = 0; teller < 1; teller++) {        
+
+    for (var teller = 0; teller < 1; teller++) {
       vijandenX2.push(random(20, 1200));
       vijandenY2.push(random(0, -1200));
 
     }
-   
 
-    for (var teller = 0; teller < 4; teller++) {        
+
+    for (var teller = 0; teller < 4; teller++) {
       vijandenX3.push(random(20, 1200));
       vijandenY3.push(random(0, -1200));
 
     }
-   
-  
+
+
 }
 
 
@@ -320,23 +284,35 @@ function draw() {
       background(255, 253, 186);
 
 
-
-
-
-
       beweegVijand();
-      beweegKogel();
-      beweegSpeler();
-      
-      if (checkVijandGeraakt()) {
-        // punten erbij
-        // nieuwe vijand maken
+
+
+      //plaatje kers
+    for (var teller = 0; teller < vijandenX2.length; teller++) {
+      image(plaatjeKers, vijandenX2[teller], vijandenY2[teller], KERSBREEDTE, KERSHOOGTE);
+    }
+
+      //plaatje peer
+    for (var teller = 0; teller < vijandenX3.length; teller++) {
+      image(plaatjePeer, vijandenX3[teller], vijandenY3[teller], PEERBREEDTE, PEERHOOGTE);
+    }
+
+      var geraakt = checkSpelerGeraakt();
+
+
+      if (geraakt !== false) {
+        if(geraakt[0] === "appel") {
+          vijandenX1.splice(geraakt[1], 1);
+          vijandenY1.splice(geraakt[1], 1);
+        } else if(geraakt[0] === "kers") {
+          vijandenX2.splice(geraakt[1], 1);
+          vijandenY2.splice(geraakt[1], 1);
+        } else if(geraakt[0] === "peer") {
+          vijandenX3.splice(geraakt[1], 1);
+          vijandenY3.splice(geraakt[1], 1);
+        }
       }
-      
-      if (checkSpelerGeraakt()) {
-        // leven eraf of gezondheid verlagen
-        // eventueel: nieuwe speler maken
-      }
+
 
       tekenVeld();
       tekenVijanden();
