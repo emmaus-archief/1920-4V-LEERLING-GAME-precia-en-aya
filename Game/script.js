@@ -26,6 +26,8 @@ var plaatjeAppel; //in deze variabelen stoppen we de functie
 var plaatjeCake; // preload() de afbeeldingen
 var plaatjeKers;
 var plaatjePeer;
+var plaatjeAnanas;
+
 
 const APPELBREEDTE = 85;
 const APPELHOOGTE = 100;
@@ -33,6 +35,9 @@ const KERSBREEDTE = 200;
 const KERSHOOGTE = 200;
 const PEERBREEDTE = 120;
 const PEERHOOGTE = 120;
+const ANANASBREEDTE = 100;
+const ANANASHOOGTE = 100;
+
 
 var spelerX = 200; // x-positie van speler
 var spelerY = 100; // y-positie van speler
@@ -48,9 +53,11 @@ var kogelY = 0;    // y-positie van kogel
 var vijandenX1 = []; // x-positie van Appel
 var vijandenX2 = []; // x-positie van kers
 var vijandenX3 = []; // x-positie van peer
+var vijandenX4 = []; // x-positie van ananas
 var vijandenY1 = []; // y-positie van appel
 var vijandenY2 = []; // y-positie van kers
 var vijandenY3 = []; // y-positie van peer
+var vijandenY4 = []; // y-positie van ananas
 
 
 
@@ -88,11 +95,15 @@ var tekenVijanden = function() {
     }
     //plaatjeappel
     for (var teller = 0; teller < vijandenX2.length; teller++) {
-      image(plaatjeKers, vijandenX2[teller], vijandenY2[teller], 200, 200);
+      image(plaatjeKers, vijandenX2[teller], vijandenY2[teller], KERSBREEDTE, KERSHOOGTE);
     } //plaatje kers
     for (var teller = 0; teller < vijandenX3.length; teller++) {
-      image(plaatjePeer, vijandenX3[teller], vijandenY3[teller], 120, 120);
+      image(plaatjePeer, vijandenX3[teller], vijandenY3[teller], PEERBREEDTE, PEERHOOGTE);
     } //plaatje peer
+    for (var teller = 0; teller < vijandenX4.length; teller++) {
+      image(plaatjeAnanas, vijandenX4[teller], vijandenY4[teller], ANANASBREEDTE, ANANASHOOGTE);
+    } //plaatje ananas
+    
 };
 
 
@@ -168,6 +179,13 @@ var beweegVijand = function() {
              vijandenX3[teller] = random(20, 1200);
          }
     }
+     for (var teller = 0; teller < vijandenX4.length; teller++) {
+         vijandenY4[teller] = vijandenY4[teller] + 5;
+         if (vijandenY4[teller] > 800) {
+             vijandenY4[teller] = random(0, -1200); // ik weet niet of de getallen kloppen ook bij rij 199!!!!!!!!!
+             vijandenX4[teller] = random(20, 1200);
+         }
+    }
 };
 
 /**
@@ -194,6 +212,13 @@ var checkSpelerGeraakt = function() {
     for (var teller = 0; teller < vijandenX3.length; teller++) {
        if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX3[teller], vijandenY3[teller], PEERBREEDTE, PEERHOOGTE)) {
             geraakt = ["peer", teller];
+  
+        }
+    }
+
+    for (var teller = 0; teller < vijandenX4.length; teller++) {
+       if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX4[teller], vijandenY4[teller], ANANASBREEDTE, ANANASHOOGTE) {
+            geraakt = ["ananas", teller];
   
         }
     }
@@ -240,6 +265,7 @@ function preload() {
     plaatjeAppel = loadImage("afbeeldingen/appel.png");
     plaatjeKers = loadImage("afbeeldingen/kers.png");
     plaatjePeer = loadImage("afbeeldingen/peer.png");
+    plaatjeAnanas = loadImage("afbeeldingen/ananas.png");
 }
 
 function setup() {
@@ -272,6 +298,11 @@ function setup() {
 
     }
 
+    for (var teller = 0; teller < 4; teller++) {
+      vijandenX4.push(random(20, 1200));
+      vijandenY4.push(random(0, -1200));
+
+    }
 
 }
 
@@ -300,6 +331,9 @@ function draw() {
       image(plaatjePeer, vijandenX3[teller], vijandenY3[teller], PEERBREEDTE, PEERHOOGTE);
     }
 
+
+
+
       var geraakt = checkSpelerGeraakt();
 
 
@@ -307,13 +341,23 @@ function draw() {
         if(geraakt[0] === "appel") {
           vijandenX1.splice(geraakt[1], 1);
           vijandenY1.splice(geraakt[1], 1);
-        } else if(geraakt[0] === "kers") {
+        } 
+        
+        else if(geraakt[0] === "kers") {
           vijandenX2.splice(geraakt[1], 1);
           vijandenY2.splice(geraakt[1], 1);
-        } else if(geraakt[0] === "peer") {
+        } 
+        
+        else if(geraakt[0] === "peer") {
           vijandenX3.splice(geraakt[1], 1);
           vijandenY3.splice(geraakt[1], 1);
         }
+
+        else if(geraakt[0] === "ananas") {
+          vijandenX4.splice(geraakt[1], 1);
+          vijandenY4.splice(geraakt[1], 1);
+        }
+        
       }
 
 
