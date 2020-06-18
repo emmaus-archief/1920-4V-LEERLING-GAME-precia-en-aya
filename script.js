@@ -29,10 +29,10 @@ var plaatjePeer;
 
 const APPELBREEDTE = 85;
 const APPELHOOGTE = 100;
-const kersBreedte = 200;
-const kersHoogte = 200;
-const peerBreedte = 120;
-const peerHoogte = 120;
+const KERSBREEDTE = 200;
+const KERSHOOGTE = 200;
+const PEERBREEDTE = 120;
+const PEERHOOGTE = 120;
 
 var spelerX = 200; // x-positie van speler
 var spelerY = 100; // y-positie van speler
@@ -113,6 +113,16 @@ var tekenKogel = function(x, y) {
 var tekenSpeler = function(x, y) {
   /*fill(173, 205, 255);
   ellipse(mouseX, 600, 50, 50);*/
+        // dit stukje zou mooi in 'tekenSpeler' kunnen
+      image(plaatjeCake, mouseX, 600, 150, 100);
+      if (mouseX >= 1130) {
+          mouseX = 1130; 
+      }
+      if (mouseX <= 0){
+          mouseX = 0;
+      }
+
+
 };
 
 function preload() {
@@ -213,14 +223,15 @@ var checkSpelerGeraakt = function() {
 
     }
 
+
     //plaatje kers
     for (var teller = 0; teller < vijandenX2.length; teller++) {   
-      image(plaatjeKers, vijandenX2[teller], vijandenY2[teller], 200, 200); 
+      image(plaatjeKers, vijandenX2[teller], vijandenY2[teller], KERSBREEDTE, KERSHOOGTE); 
     } 
     
     //plaatje peer
     for (var teller = 0; teller < vijandenX3.length; teller++) {   
-      image(plaatjePeer, vijandenX3[teller], vijandenY3[teller], 120, 120); 
+      image(plaatjePeer, vijandenX3[teller], vijandenY3[teller], PEERBREEDTE, PEERHOOGTE); 
     } 
 
 
@@ -295,15 +306,6 @@ function draw() {
     case SPELEN:
 
       background(255, 253, 186);
-
-      // dit stukje zou mooi in 'tekenSpeler' kunnen
-      image(plaatjeCake, mouseX, 600, 150, 100);
-      if (mouseX >= 1130) {
-          mouseX = 1130; 
-      }
-      if (mouseX <= 0){
-          mouseX = 0;
-      }
 
 
 
