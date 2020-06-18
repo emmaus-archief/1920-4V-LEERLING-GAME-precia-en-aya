@@ -27,8 +27,17 @@ var plaatjeCake; // preload() de afbeeldingen
 var plaatjeKers;
 var plaatjePeer;
 
+const APPELBREEDTE = 85;
+const APPELHOOGTE = 100;
+const kersBreedte = 200;
+const kersHoogte = 200;
+const peerBreedte = 120;
+const peerHoogte = 120;
+
 var spelerX = 200; // x-positie van speler
 var spelerY = 100; // y-positie van speler
+const SPELERBREEDTE = 150;
+const SPELERHOOGTE = 100;
 
 var kogelX = 0;    // x-positie van kogel
 var kogelY = 0;    // y-positie van kogel
@@ -42,6 +51,8 @@ var vijandenY2 = []; // y-positie van kers
 var vijandenY3 = []; // y-positie van peer
 
 var score = 0; // aantal behaalde punten
+
+var aantalKersen = 0;
 
 
 
@@ -69,14 +80,14 @@ var tekenVeld = function () {
  
 var tekenVijanden = function() {
     for (var teller = 0; teller < vijandenX1.length; teller++) {   
-    image(plaatjeAppel, vijandenX1[teller], vijandenY1[teller], 170, 150); 
+      image(plaatjeAppel, vijandenX1[teller], vijandenY1[teller], APPELBREEDTE, APPELHOOGTE); 
     }
     //plaatjeappel
     for (var teller = 0; teller < vijandenX2.length; teller++) {   
-    image(plaatjeKers, vijandenX2[teller], vijandenY2[teller], 200, 200); 
+      image(plaatjeKers, vijandenX2[teller], vijandenY2[teller], 200, 200); 
     } //plaatje kers
     for (var teller = 0; teller < vijandenX3.length; teller++) {   
-    image(plaatjePeer, vijandenX3[teller], vijandenY3[teller], 120, 120); 
+      image(plaatjePeer, vijandenX3[teller], vijandenY3[teller], 120, 120); 
     } //plaatje peer
 };
 
@@ -105,10 +116,10 @@ var tekenSpeler = function(x, y) {
 };
 
 function preload() {
-    plaatjeCake = loadImage ("afbeeldingen/cake.png");
-    plaatjeAppel = loadImage ("afbeeldingen/appel.png");
-    plaatjeKers = loadImage ("afbeeldingen/kers.png");
-    plaatjePeer = loadImage ("afbeeldingen/peer.png");
+    // plaatjeCake = loadImage ("./afbeeldingen/cake.png");
+    // plaatjeAppel = loadImage ("./afbeeldingen/appel.png");
+    // plaatjeKers = loadImage ("./afbeeldingen/kers.png");
+    // plaatjePeer = loadImage ("./afbeeldingen/peer.png");
 
 }
 
@@ -185,33 +196,32 @@ var checkVijandGeraakt = function() {
  * bijvoorbeeld door botsing met vijand
  * @returns {boolean} true als speler is geraakt
  */
-var checkSpelerGeraakt = function(x,y) {
+var checkSpelerGeraakt = function() {
+    //plaatjeappel
+    for (var teller = 0; teller < vijandenX1.length; teller++) {   
+        var heeftBotsing = collideRectRect(spelerX, spelerY, SPELERBREEDTE, SPELERHOOGTE,
+                                            vijandenX1[teller], vijandenY1[teller], APPELBREEDTE, APPELHOOGTE)
+        if (heeftBotsing === true) {
+            //stel dit is een kers dan
+            // laat kers verdwijnen
+            // variabele aantalKersen met 1 ophogen
 
-    for (var i =0; i < vijandenX1.length; i++) {
-        if (CollideRectRect(vijandenX1[vijandNummer], vijandenY1[vijandNummer], 170, spelerX[i],spelerY[i], 200)) {
-            teruggeefwaarde = true;
-        
-            verwijderVijand (i);
-
-            console.log("Speler" + vijandNummer + "geraakt door vijand" + i);
+            // bij schieten (muisklik): kijk of aantalKersen > 0
+            // verlaag aantalKersen met 1
+            // schiet een kogel met kers als plaatje
         }
+
     }
 
-        return teruggeefwaarde;
-
-        function verwijderVijand(nummer) {
-            console.log("verwijder vijand " + nummer);
-            vijandenX1.splice(nummer, 1);
-            vijandenY1.splice(nummer, 1)
-            vijandenSnelheid.splice(nummer, 1);
-}
-
-   /* var vijandX = spelerX 
-    boolean(vijandX);  //returns false
-  return false;
-   
-  if  (boolean = false)  //dus als de vijand de speler raakt
-    PrintIn("GAME OVER"); */
+    //plaatje kers
+    for (var teller = 0; teller < vijandenX2.length; teller++) {   
+      image(plaatjeKers, vijandenX2[teller], vijandenY2[teller], 200, 200); 
+    } 
+    
+    //plaatje peer
+    for (var teller = 0; teller < vijandenX3.length; teller++) {   
+      image(plaatjePeer, vijandenX3[teller], vijandenY3[teller], 120, 120); 
+    } 
 
 
 };
@@ -238,6 +248,11 @@ function updateScore () {
  * de p5 library, zodra het spel geladen is in de browser
  */
 function setup() {
+    plaatjeCake = loadImage ("afbeeldingen/cake.png");
+    plaatjeAppel = loadImage ("afbeeldingen/appel.png");
+    plaatjeKers = loadImage ("afbeeldingen/kers.png");
+    plaatjePeer = loadImage ("afbeeldingen/peer.png");
+
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
 
@@ -247,22 +262,22 @@ function setup() {
   // maak 10 keer een nieuwe x en y waarden voor de vijanden'
   // en voeg deze achter aan de array toe
    for (var teller = 0; teller < 4; teller++) {        
-     vijandenX1.push(random(20, 1200));
-     vijandenY1.push(random(0, -1200));
+      vijandenX1.push(random(20, 1200));
+      vijandenY1.push(random(0, -1200));
 
     }
    
 
     for (var teller = 0; teller < 1; teller++) {        
-     vijandenX2.push(random(20, 1200));
-     vijandenY2.push(random(0, -1200));
+      vijandenX2.push(random(20, 1200));
+      vijandenY2.push(random(0, -1200));
 
     }
    
 
     for (var teller = 0; teller < 4; teller++) {        
-     vijandenX3.push(random(20, 1200));
-     vijandenY3.push(random(0, -1200));
+      vijandenX3.push(random(20, 1200));
+      vijandenY3.push(random(0, -1200));
 
     }
    
@@ -279,15 +294,16 @@ function draw() {
   switch (spelStatus) {
     case SPELEN:
 
-   background(255, 253, 186);
+      background(255, 253, 186);
 
-    image(plaatjeCake, mouseX, 600, 150, 100);
-if (mouseX >= 1130) {
-    mouseX = 1130; 
-}
-if (mouseX <= 0){
-    mouseX = 0;
-}
+      // dit stukje zou mooi in 'tekenSpeler' kunnen
+      image(plaatjeCake, mouseX, 600, 150, 100);
+      if (mouseX >= 1130) {
+          mouseX = 1130; 
+      }
+      if (mouseX <= 0){
+          mouseX = 0;
+      }
 
 
 
