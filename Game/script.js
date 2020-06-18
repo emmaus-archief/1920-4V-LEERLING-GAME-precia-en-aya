@@ -209,22 +209,21 @@ var checkSpelerGeraakt = function() {
             geraakt = ["kers", teller];
         }
     }
-    for (var teller = 0; teller < vijandenX3.length; teller++) {
+
+
+
+       for (var teller = 0; teller < vijandenX3.length; teller++) {
        if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX3[teller], vijandenY3[teller], PEERBREEDTE, PEERHOOGTE)) {
             geraakt = ["peer", teller];
   
         }
     }
 
-    for (var teller = 0; teller < vijandenX4.length; teller++) {
-       if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX4[teller], vijandenY4[teller], ANANASBREEDTE, ANANASHOOGTE) {
-            geraakt = ["ananas", teller];
-  
-        }
-    }
+
 
     return geraakt;
 }
+
 
     
 
