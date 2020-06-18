@@ -147,7 +147,7 @@ function tekenScore() {
 
 var beweegVijand = function() {
      for (var teller = 0; teller < vijandenX1.length; teller++) {
-         vijandenY1[teller] = vijandenY1[teller] + 10;
+         vijandenY1[teller] = vijandenY1[teller] + 5;
          if (vijandenY1[teller] > 800) {
              vijandenY1[teller] = random(0, -1200); // ik weet niet of de getallen kloppen ook bij rij 199!!!!!!!!!
              vijandenX1[teller] = random(20, 1200);
@@ -155,14 +155,14 @@ var beweegVijand = function() {
     }
 
      for (var teller = 0; teller < vijandenX2.length; teller++) {
-         vijandenY2[teller] = vijandenY2[teller] + 13;
+         vijandenY2[teller] = vijandenY2[teller] + 10;
          if (vijandenY2[teller] > 800) {
              vijandenY2[teller] = random(0, -1200); // ik weet niet of de getallen kloppen ook bij rij 199!!!!!!!!!
              vijandenX2[teller] = random(20, 1200);
          }
     }
      for (var teller = 0; teller < vijandenX3.length; teller++) {
-         vijandenY3[teller] = vijandenY3[teller] + 10;
+         vijandenY3[teller] = vijandenY3[teller] + 5;
          if (vijandenY3[teller] > 800) {
              vijandenY3[teller] = random(0, -1200); // ik weet niet of de getallen kloppen ook bij rij 199!!!!!!!!!
              vijandenX3[teller] = random(20, 1200);
@@ -182,7 +182,7 @@ var checkSpelerGeraakt = function() {
     for (var teller = 0; teller < vijandenX1.length; teller++) {
        if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX1[teller], vijandenY1[teller], APPELBREEDTE, APPELHOOGTE)) {
             geraakt = ["appel", teller];
-            spelStatus = GAMEOVER
+
         }
     }
 
@@ -194,7 +194,7 @@ var checkSpelerGeraakt = function() {
     for (var teller = 0; teller < vijandenX3.length; teller++) {
        if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX3[teller], vijandenY3[teller], PEERBREEDTE, PEERHOOGTE)) {
             geraakt = ["peer", teller];
-            spelStatus = GAMEOVER
+  
         }
     }
 
@@ -229,15 +229,6 @@ function updateScore () {
     score = score + 10;
 }
 
-var opnieuwSpelen = function() {
-        fill(255, 255, 255);  
-        rect(0, 0, 300, 200);
-        fill(0, 0, 0);
-        text("Opnieuw Spelen", 20, 80);  
-        if(mouseX > 0 && mouseX < 300 && mouseY > 0 && mouseY < 200 && mouseIsPressed) { // als je op opnieuw spelen klikt
-        spelStatus = SPELEN;
-    }
-}
 
 /**
  * setup
@@ -333,22 +324,11 @@ function draw() {
       tekenScore();
 
     
-           // resetSpel();
-    }
-
       if (checkGameOver()) {
         spelStatus = GAMEOVER;
       }
 
-      break; 
-      case GAMEOVER:
-      background(252, 96, 96);  
-      fill(0, 0, 0); // kleur is zwart
-      textSize(50);
-      text("Jammer, probeer het nog eens", 250, 350);
-
-      opnieuwSpelen();
-
+     
       break;
   }
 }
