@@ -29,14 +29,14 @@ var plaatjePeer;
 var plaatjeAnanas;
 
 
-const APPELBREEDTE = 85;
-const APPELHOOGTE = 100;
+const APPELBREEDTE = 50;
+const APPELHOOGTE = 55;
 const KERSBREEDTE = 200;
 const KERSHOOGTE = 200;
 const PEERBREEDTE = 120;
 const PEERHOOGTE = 120;
-const ANANASBREEDTE = 100;
-const ANANASHOOGTE = 100;
+const ANANASBREEDTE = 150;
+const ANANASHOOGTE = 130;
 
 
 var spelerX = 200; // x-positie van speler
@@ -204,9 +204,9 @@ var checkSpelerGeraakt = function() {
         }
     }
 
-    for (var teller = 0; teller < vijandenX2.length; teller++) {
-      if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX2[teller], vijandenY2[teller], KERSBREEDTE, KERSHOOGTE)) {
-            geraakt = ["kers", teller];
+    for (var teller = 0; teller < vijandenX4.length; teller++) {
+      if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX4[teller], vijandenY4[teller], ANANASBREEDTE, ANANASHOOGTE)) {
+            geraakt = ["ananas", teller];
         }
     }
 
@@ -218,6 +218,13 @@ var checkSpelerGeraakt = function() {
   
         }
     }
+
+        for (var teller = 0; teller < vijandenX2.length; teller++) {
+      if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX2[teller], vijandenY2[teller], KERSBREEDTE, KERSHOOGTE)) {
+            geraakt = ["kers", teller];
+        }
+    }
+
 
 
 
