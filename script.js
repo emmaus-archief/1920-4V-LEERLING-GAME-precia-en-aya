@@ -50,6 +50,8 @@ var vijandenY1 = []; // y-positie van appel
 var vijandenY2 = []; // y-positie van kers
 var vijandenY3 = []; // y-positie van peer
 
+
+
 var score = 0; // aantal behaalde punten
 
 var aantalKersen = 0;
@@ -200,6 +202,12 @@ var checkVijandGeraakt = function() {
   return false;
 };
 
+function verwijderVijandenX1(nummer) {
+    console.log("verwijder vijand " + nummer);
+    vijandenX1.splice(nummer, 1);
+    vijandenY1.splice(nummer, 1)
+
+}
 
 /**
  * Zoekt uit of de speler is geraakt
@@ -212,6 +220,9 @@ var checkSpelerGeraakt = function() {
         var heeftBotsing = collideRectRect(spelerX, spelerY, SPELERBREEDTE, SPELERHOOGTE,
                                             vijandenX1[teller], vijandenY1[teller], APPELBREEDTE, APPELHOOGTE)
         if (heeftBotsing === true) {
+            verwijderVijandenX1(teller)
+            console.log(heeftBotsing + teller);
+
             //stel dit is een kers dan
             // laat kers verdwijnen
             // variabele aantalKersen met 1 ophogen
@@ -223,6 +234,7 @@ var checkSpelerGeraakt = function() {
 
     }
 
+   
 
     //plaatje kers
     for (var teller = 0; teller < vijandenX2.length; teller++) {   
