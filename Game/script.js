@@ -60,15 +60,12 @@ var vijandenY2 = []; // y-positie van kers
 var vijandenY3 = []; // y-positie van peer
 var vijandenY4 = []; // y-positie van ananas
 
-var negeren = 4; 
-
-
 
 var score = 0; // aantal behaalde punten
 
 var aantalKersen = 0;
 
-var idk = 20;
+
 
 
 
@@ -152,8 +149,8 @@ function tekenScore() {
 
     fill(0, 0, 0);
     textSize (45);
-    text("score", 145, 55, 0, 0);
-    text("score:", 20, 55, 0, 0);
+    text(score, 145, 55);
+    text("score:", 20, 55);
 }
 
 /**
