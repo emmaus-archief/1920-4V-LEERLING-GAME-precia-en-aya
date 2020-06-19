@@ -127,9 +127,7 @@ var tekenKogel = function(x, y) {
 
 
 var tekenSpeler = function(x, y) {
-  /*fill(173, 205, 255);
-  ellipse(mouseX, 600, 50, 50);*/
-        // dit stukje zou mooi in 'tekenSpeler' kunnen
+  
       image(plaatjeCake, mouseX, 600, 150, 100);
       if (mouseX >= 1130) {
           mouseX = 1130;
@@ -201,6 +199,7 @@ var checkSpelerGeraakt = function() {
     for (var teller = 0; teller < vijandenX1.length; teller++) {
        if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX1[teller], vijandenY1[teller], APPELBREEDTE, APPELHOOGTE)) {
             geraakt = ["appel", teller];
+            spelStatus = GAMEOVER
 
         }
     }
@@ -208,20 +207,22 @@ var checkSpelerGeraakt = function() {
     for (var teller = 0; teller < vijandenX4.length; teller++) {
       if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX4[teller], vijandenY4[teller], ANANASBREEDTE, ANANASHOOGTE)) {
             geraakt = ["ananas", teller];
+            spelStatus = GAMEOVER
         }
     }
 
 
 
-       for (var teller = 0; teller < vijandenX3.length; teller++) {
+    for (var teller = 0; teller < vijandenX3.length; teller++) {
        if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX3[teller], vijandenY3[teller], PEERBREEDTE, PEERHOOGTE)) {
             geraakt = ["peer", teller];
+            spelStatus = GAMEOVER
   
         }
     }
 
-        for (var teller = 0; teller < vijandenX2.length; teller++) {
-      if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX2[teller], vijandenY2[teller], KERSBREEDTE, KERSHOOGTE)) {
+    for (var teller = 0; teller < vijandenX2.length; teller++) {
+        if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX2[teller], vijandenY2[teller], KERSBREEDTE, KERSHOOGTE)) {
             geraakt = ["kers", teller];
         }
     }
@@ -380,6 +381,15 @@ function draw() {
       }
 
      
+      break;
+      case GAMEOVER:
+      background(255, 80, 64);  
+      fill(0, 0, 0); // kleur is zwart
+      textSize(50);
+      text("Jammer, probeer het nog eens!", 300, 350);
+    
+      opnieuwSpelen();
+
       break;
   }
 }
