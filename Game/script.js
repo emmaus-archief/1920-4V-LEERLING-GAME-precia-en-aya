@@ -59,6 +59,8 @@ var vijandenY2 = []; // y-positie van kers
 var vijandenY3 = []; // y-positie van peer
 var vijandenY4 = []; // y-positie van ananas
 
+var negeren = 4; 
+
 
 
 var score = 0; // aantal behaalde punten
