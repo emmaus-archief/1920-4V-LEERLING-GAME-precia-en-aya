@@ -118,9 +118,7 @@ function verwijderKogel(teller) {
 }
 
 var tekenKogels = function() {
-    // ga alle posities van de kogels langs
-    // voordeel: als er geen posities (en dus kogels) zijn
-    // wordt er ook niets getekend.
+
 
     for (var teller = 0; teller < kogelsX.length; teller++) {
         fill(255, 255, 255);
@@ -179,7 +177,7 @@ var beweegVijand = function() {
      for (var teller = 0; teller < vijandenX1.length; teller++) {
          vijandenY1[teller] = vijandenY1[teller] + 5;
          if (vijandenY1[teller] > 800) {
-             vijandenY1[teller] = random(0, -1200); // ik weet niet of de getallen kloppen ook bij rij 199!!!!!!!!!
+             vijandenY1[teller] = random(0, -1200); 
              vijandenX1[teller] = random(20, 1200);
          }
     }
@@ -187,7 +185,7 @@ var beweegVijand = function() {
      for (var teller = 0; teller < vijandenX2.length; teller++) {
          vijandenY2[teller] = vijandenY2[teller] + 10;
          if (vijandenY2[teller] > 800) {
-             vijandenY2[teller] = random(0, -1200); // ik weet niet of de getallen kloppen ook bij rij 199!!!!!!!!!
+             vijandenY2[teller] = random(0, -1200); 
              vijandenX2[teller] = random(20, 1200);
          }
     }
@@ -195,7 +193,7 @@ var beweegVijand = function() {
      for (var teller = 0; teller < vijandenX3.length; teller++) {
          vijandenY3[teller] = vijandenY3[teller] + 5;
          if (vijandenY3[teller] > 800) {
-             vijandenY3[teller] = random(0, -1200); // ik weet niet of de getallen kloppen ook bij rij 199!!!!!!!!!
+             vijandenY3[teller] = random(0, -1200); 
              vijandenX3[teller] = random(20, 1200);
          }
     }
@@ -203,7 +201,7 @@ var beweegVijand = function() {
      for (var teller = 0; teller < vijandenX4.length; teller++) {
          vijandenY4[teller] = vijandenY4[teller] + 5;
          if (vijandenY4[teller] > 800) {
-             vijandenY4[teller] = random(0, -1200); // ik weet niet of de getallen kloppen ook bij rij 199!!!!!!!!!
+             vijandenY4[teller] = random(0, -1200); 
              vijandenX4[teller] = random(20, 1200);
         }
     }
@@ -211,19 +209,13 @@ var beweegVijand = function() {
 
 var beweegKogel = function() {
     for (var teller = 0; teller < kogelsX.length; teller++) {
-        // y waarde updaten: kogel moet stukje verder omhoog
         kogelsY[teller] = kogelsY[teller] - kogelSnelheid;
 
-        // als kogel aan bovenkant uit beeld is
-        // (d.w.z. als de kogel meer dan de helft van z'n
-        // diameter boven de bovenkant is),
-        // dan coordinaten uit arrays halen
+        
         if (kogelsY[teller] < 0 - kogelDiameter / 2) {
             verwijderKogel(teller);
 
-            // omdat we een element uit de array hebben gehaald
-            // klopt teller i niet meer (we zouden er nu een overslaan)
-            // dus dat corrigeren we:
+           
             teller = teller - 1;
         }
     }
@@ -287,16 +279,16 @@ var checkSpelerGeraakt = function() {
 var checkVijandGeraakt = function(teller) {
     var teruggeefWaarde = false;
 
-    // ga voor deze vijand iedere kogel langs
+
     for (var teller = 0; teller < kogelsX.length; teller++) {
         if (collideCircleCircle(kogelsX[teller], kogelsY[teller], kogelDiameter,
                                 vijandenX1[teller], vijandenY1[teller], VIJANDDIAMETER)) {
             teruggeefWaarde = true;
 
-            // verwijder de kogel in kwestie
+         
             verwijderKogel(teller);
 
-            // schrijf boodschap in de console, handig bij het testen van de game
+            
             console.log("Vijand " + teller + " geraakt door kogel " + teller);
         }
     }
@@ -311,14 +303,7 @@ function verwijderVijand(teller) {
     vijandenY1.splice(teller, 1)
     vijandenSnelheid.splice(teller, 1);
 }
-        //stel dit is een kers dan
-        // laat kers verdwijnen
-        // variabele aantalKersen met 1 ophogen
-        // bij schieten (muisklik): kijk of aantalKersen > 0
-        // verlaag aantalKersen met 1
-        // schiet een kogel met kers als plaatje
-
-// ook als de kers is geraakt score + 1000
+        
 
 
 /**
@@ -354,9 +339,7 @@ function preload() {
 
 
 function mouseClicked() {
-console.log("mouse clicked");
-    // voeg nieuwe kogel toe door nieuwe
-    // x- en y-waarden in arrays te zetten:
+    console.log("mouse clicked");
 
     kogelsX.push(mouseX);
     kogelsY.push(mouseY);
@@ -486,15 +469,7 @@ switch (spelStatus) {
 
       beweegVijand();
 
-      //plaatje kers
-    /*for (var teller = 0; teller < vijandenX2.length; teller++) {
-      image(plaatjeKers, vijandenX2[teller], vijandenY2[teller], KERSBREEDTE, KERSHOOGTE);
-    }
-      //plaatje peer
-    for (var teller = 0; teller < vijandenX3.length; teller++) {
-      image(plaatjePeer, vijandenX3[teller], vijandenY3[teller], PEERBREEDTE, PEERHOOGTE);
-    }*/
-    
+ 
 
 
 var teruggeefwaarde = checkVijandGeraakt();
@@ -536,21 +511,11 @@ var geraakt = checkSpelerGeraakt();
  
 tekenKogels();
  for (var teller = 0; teller < kogelsX.length; teller++) {
-        // y waarde updaten: kogel moet stukje verder omhoog
-        kogelsY[teller] = kogelsY[teller] - 5;
+      kogelsY[teller] = kogelsY[teller] - 5;
 
-        // als kogel aan bovenkant uit beeld is
-        // (d.w.z. als de kogel meer dan de helft van z'n
-        // diameter boven de bovenkant is),
-        // dan coordinaten uit arrays halen
-
-                if (kogelsY[teller] < 0 - kogelDiameter / 2) {
-          verwijderKogel(teller);
-
-            // omdat we een element uit de array hebben gehaald
-            // klopt teller i niet meer (we zouden er nu een overslaan)
-            // dus dat corrigeren we:
-            teller = teller - 1;
+    if (kogelsY[teller] < 0 - kogelDiameter / 2) {
+         verwijderKogel(teller);
+         teller = teller - 1;
         }
 
     }
