@@ -17,6 +17,7 @@
 /* globale variabelen die je gebruikt in je game */
 /* ********************************************* */
 
+
 const UITLEG = 0;
 const SPELEN = 1;
 const GAMEOVER = 2;
@@ -67,7 +68,7 @@ var score = 0; // aantal behaalde punten
 
 var aantalKersen = 0;
 
-
+var idk = 20;
 
 
 
@@ -107,6 +108,7 @@ var tekenVijanden = function() {
     } //plaatje ananas
     
 };
+
 
 
 /**
