@@ -237,9 +237,10 @@ var checkVijandGeraakt = function(teller) {
         if (collideCircleCircle(kogelX[teller], kogelY[teller], kogelDiameter,
                                 vijandenX1[teller], vijandenY1[teller], VIJANDDIAMETER)) {
             teruggeefWaarde = true;
+            geraakt = ["kogel" + teller]
             
             // verwijder de kogel in kwestie
-            verwijderKogel(teller);
+            verwijdervijand(teller);
 
             // schrijf boodschap in de console, handig bij het testen van de game
             console.log("Vijand " + teller + " geraakt door kogel " + teller);
@@ -464,8 +465,8 @@ switch (spelStatus) {
 
 var teruggeefwaarde = checkVijandGeraakt();
 if (teruggeefwaarde !== false) {
-    if (teruggeefwaarde[0] === "geraakt door kogel") {
-           vijandenX1.splice(geraakt[1], 1);
+    if (teruggeefwaarde[0] === "kogel") {
+         vijandenX1.splice(geraakt[1], 1);
           vijandenY1.splice(geraakt[1], 1);
         } 
         
