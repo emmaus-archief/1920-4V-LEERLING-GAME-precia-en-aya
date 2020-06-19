@@ -21,7 +21,7 @@
 const UITLEG = 0;
 const SPELEN = 1;
 const GAMEOVER = 2;
-var spelStatus = SPELEN;
+var spelStatus = UITLEG;
 
 var plaatjeAppel; //in deze variabelen stoppen we de functie
 var plaatjeCake; // preload() de afbeeldingen
@@ -332,13 +332,37 @@ var restart = function() {
   resetSpel();
 }
 
+function mouseClicked () {
+    if (mouseClicked = true) {
+        spelStatus = SPELEN
+    }
+}
 /**
  * draw
  * de code in deze functie wordt meerdere keren per seconde
  * uitgevoerd door de p5 library, nadat de setup functie klaar is
  */
 function draw() {
-  switch (spelStatus) {
+switch (spelStatus) {
+    case UITLEG:
+      var mijnVar = 0;
+      background(136, 255, 122);
+      fill(0, 0, 0);
+      textSize(40);
+      text("klik om te starten", 470, 370, 500, 50);
+      textSize(50);
+      text("Spelregels:", 20, 20, 500, 50);
+      textSize(35);
+      text("- Pak de kersen", 20, 80, 500, 50);
+      text("- Schiet en ontwijk de andere fruitsoorten", 20, 140, 800, 50);
+
+      if (mouseClicked === true) {
+          console.log("mouseClicked");
+          spelStatus = SPELEN;
+          
+      }
+   
+  break;
     case SPELEN:
 
       background(255, 253, 186);
