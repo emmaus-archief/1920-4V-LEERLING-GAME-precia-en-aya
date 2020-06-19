@@ -365,27 +365,27 @@ function setup() {
 
   // maak 10 keer een nieuwe x en y waarden voor de vijanden'
   // en voeg deze achter aan de array toe
-   for (var teller = 0; teller < 4; teller++) {
+   for (var teller = 0; teller < 5; teller++) {
       vijandenX1.push(random(20, 1200));
       vijandenY1.push(random(0, -1200));
 
     }
 
 
-    for (var teller = 0; teller < 1; teller++) {
+    for (var teller = 0; teller < 7; teller++) {
       vijandenX2.push(random(20, 1200));
       vijandenY2.push(random(0, -1200));
 
     }
 
 
-    for (var teller = 0; teller < 4; teller++) {
+    for (var teller = 0; teller < 5; teller++) {
       vijandenX3.push(random(20, 1200));
       vijandenY3.push(random(0, -1200));
 
     }
 
-    for (var teller = 0; teller < 4; teller++) {
+    for (var teller = 0; teller < 5; teller++) {
       vijandenX4.push(random(20, 1200));
       vijandenY4.push(random(0, -1200));
 
