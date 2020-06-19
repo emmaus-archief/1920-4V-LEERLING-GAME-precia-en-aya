@@ -31,12 +31,27 @@ var plaatjeAnanas;
 
 const APPELBREEDTE = 50;
 const APPELHOOGTE = 55;
+<<<<<<< HEAD
 const KERSBREEDTE = 200;
 const KERSHOOGTE = 200;
 const PEERBREEDTE = 120;
 const PEERHOOGTE = 120;
 const ANANASBREEDTE = 70;
 const ANANASHOOGTE = 130;
+=======
+
+const KERSBREEDTE = 30;
+
+const KERSHOOGTE = 60;
+
+const PEERBREEDTE = 40;
+
+const PEERHOOGTE = 80;
+
+const ANANASBREEDTE = 50;
+
+const ANANASHOOGTE = 110;
+>>>>>>> 58b5fb130fb303363b10e11c0cc79db22cff6ba4
 
 
 const VIJANDDIAMETER = 40;
@@ -344,6 +359,12 @@ function preload() {
     plaatjeKers = loadImage("afbeeldingen/kers.png");
     plaatjePeer = loadImage("afbeeldingen/peer.png");
     plaatjeAnanas = loadImage("afbeeldingen/ananas.png");
+<<<<<<< HEAD
+=======
+
+    achtergrond = loadImage("afbeeldingen/farm.jpg");
+
+>>>>>>> 58b5fb130fb303363b10e11c0cc79db22cff6ba4
 }
 
 
@@ -452,6 +473,7 @@ switch (spelStatus) {
 
       background(136, 255, 122);
 
+
       fill(0, 0, 0);
       textSize(40);
       text("klik om te starten", 470, 370, 500, 50);
@@ -474,6 +496,13 @@ switch (spelStatus) {
     case SPELEN:
       background(255, 253, 186);
 
+<<<<<<< HEAD
+=======
+      
+
+ 
+
+>>>>>>> 58b5fb130fb303363b10e11c0cc79db22cff6ba4
       beweegVijand();
 
       //plaatje kers
@@ -518,9 +547,18 @@ var geraakt = checkSpelerGeraakt();
         }
       }
 
+<<<<<<< HEAD
     tekenVeld();
     tekenVijanden();
     tekenKogel();
+=======
+ 
+
+
+      
+
+      tekenVijanden();
+>>>>>>> 58b5fb130fb303363b10e11c0cc79db22cff6ba4
 
 for (var teller = 0; teller < kogelX.length; teller++) {
 
@@ -546,6 +584,14 @@ for (var teller = 0; teller < kogelX.length; teller++) {
       tekenSpeler(spelerX, spelerY);
       tekenScore();
 
+<<<<<<< HEAD
+=======
+ 
+
+
+    
+
+>>>>>>> 58b5fb130fb303363b10e11c0cc79db22cff6ba4
       if (checkGameOver()) {
         spelStatus = GAMEOVER;
       }
