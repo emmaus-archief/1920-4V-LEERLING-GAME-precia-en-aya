@@ -224,6 +224,7 @@ var checkSpelerGeraakt = function() {
     for (var teller = 0; teller < vijandenX2.length; teller++) {
         if (collideRectRect(mouseX, 620, SPELERBREEDTE, SPELERHOOGTE, vijandenX2[teller], vijandenY2[teller], KERSBREEDTE, KERSHOOGTE)) {
             geraakt = ["kers", teller];
+            score = score + 50
         }
     }
 
@@ -259,7 +260,7 @@ var checkGameOver = function() {
 };
 
 function updateScore () {
-    score = score + 10;
+    score = score + 5;
 }
 
 
