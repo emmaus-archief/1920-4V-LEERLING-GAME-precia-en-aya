@@ -28,47 +28,26 @@ var plaatjeKers;
 var plaatjePeer;
 var plaatjeAnanas;
 
-
 const APPELBREEDTE = 50;
 const APPELHOOGTE = 55;
-<<<<<<< HEAD
-const KERSBREEDTE = 200;
-const KERSHOOGTE = 200;
-const PEERBREEDTE = 120;
-const PEERHOOGTE = 120;
-const ANANASBREEDTE = 70;
-const ANANASHOOGTE = 130;
-=======
-
 const KERSBREEDTE = 30;
-
 const KERSHOOGTE = 60;
-
 const PEERBREEDTE = 40;
-
 const PEERHOOGTE = 80;
-
 const ANANASBREEDTE = 50;
-
 const ANANASHOOGTE = 110;
->>>>>>> 58b5fb130fb303363b10e11c0cc79db22cff6ba4
-
-
 const VIJANDDIAMETER = 40;
-
 
 var spelerX = 200; // x-positie van speler
 var spelerY = 100; // y-positie van speler
 const SPELERBREEDTE = 150;
 const SPELERHOOGTE = 100;
 
-
-var kogelX = [];    // x-positie van kogel
-var kogelY = [];   // y-positie van kogel
-
 var kogelSnelheid = 16;
 var kogelDiameter = 10;
 
+var kogelsX = [];
+var kogelsY = [];
  
 var vijandenX1 = []; // x-positie van Appel
 var vijandenX2 = []; // x-positie van kers
@@ -131,12 +110,18 @@ var tekenVijanden = function() {
 
 };
 
+var tekenKogels = function() {
+    // ga alle posities van de kogels langs
+    // voordeel: als er geen posities (en dus kogels) zijn
+    // wordt er ook niets getekend.
 
-function verwijderKogel(teller) {
-    console.log("verwijder kogel " + teller);
-    kogelX.splice(teller, 1);
-    kogelY.splice(teller, 1)
-}
+    for (var teller = 0; teller < kogelsX.length; teller++) {
+        fill(255, 255, 255);
+        ellipse(kogelsX[teller], kogelsY[teller], kogelDiameter, kogelDiameter);
+    }
+};
+
+
 
 
 /**
@@ -144,14 +129,6 @@ function verwijderKogel(teller) {
  * @param {number} x x-coördinaat
  * @param {number} y y-coördinaat
  */
-
-var tekenKogel = function(x, y) {
-    for (var teller = 0; teller < kogelX.length; teller++) {
-        fill(255, 255, 255);
-        ellipse(kogelX[teller], kogelY[teller], kogelDiameter, kogelDiameter);
-    }
-};
-
 
 /**
  * Tekent de speler
@@ -225,21 +202,17 @@ var beweegVijand = function() {
     }
 };
 
-
 var beweegKogel = function() {
-    for (var teller = 0; teller < kogelX.length; teller++) {
-
+    for (var teller = 0; teller < kogelsX.length; teller++) {
         // y waarde updaten: kogel moet stukje verder omhoog
-
-        kogelY[teller] = kogelY[teller] - 16;
+        kogelsY[teller] = kogelsY[teller] - kogelSnelheid;
 
         // als kogel aan bovenkant uit beeld is
         // (d.w.z. als de kogel meer dan de helft van z'n
         // diameter boven de bovenkant is),
         // dan coordinaten uit arrays halen
-
-        if (kogelY[teller] < 0 - kogelDiameter / 2) {
-          verwijderKogel(teller);
+        if (kogelsY[teller] < 0 - kogelDiameter / 2) {
+            verwijderKogel(teller);
 
             // omdat we een element uit de array hebben gehaald
             // klopt teller i niet meer (we zouden er nu een overslaan)
@@ -250,6 +223,7 @@ var beweegKogel = function() {
 };
 
 
+
 /**
  * Zoekt uit of de speler is geraakt
  * bijvoorbeeld door botsing met vijand
@@ -257,26 +231,6 @@ var beweegKogel = function() {
  */
 
 
-var checkVijandGeraakt = function(teller) {
-    var teruggeefWaarde = false;
-
-    // ga voor deze vijand iedere kogel langs
-    for (var teller = 0; teller < kogelX.length; teller++) {
-        if (collideCircleCircle(kogelX[teller], kogelY[teller], kogelDiameter,
-                                vijandenX1[teller], vijandenY1[teller], VIJANDDIAMETER)) {
-            teruggeefWaarde = true;
-
-            geraakt = ["kogel" + teller]
-
-            // verwijder de kogel in kwestie
-            verwijderVijand(teller);
-
-            // schrijf boodschap in de console, handig bij het testen van de game
-            console.log("Vijand " + teller + " geraakt door kogel " + teller);
-        }
-    }
-    return teruggeefWaarde;
-};
 
 
 function verwijderVijand(teller) {
@@ -359,26 +313,21 @@ function preload() {
     plaatjeKers = loadImage("afbeeldingen/kers.png");
     plaatjePeer = loadImage("afbeeldingen/peer.png");
     plaatjeAnanas = loadImage("afbeeldingen/ananas.png");
-<<<<<<< HEAD
-=======
 
-    achtergrond = loadImage("afbeeldingen/farm.jpg");
 
->>>>>>> 58b5fb130fb303363b10e11c0cc79db22cff6ba4
 }
 
 
 function mouseClicked() {
-    console.log("mouse clicked");
-
+console.log("mouse clicked");
     // voeg nieuwe kogel toe door nieuwe
     // x- en y-waarden in arrays te zetten:
-    kogelX.push(mouseX);
-    kogelY.push(mouseY - 70);
 
-    console.log(kogelX);
-    console.log(kogelY);
+    kogelsX.push(mouseX);
+    kogelsY.push(mouseY - 70);
 
+    console.log(kogelsX);
+    console.log(kogelsY);
     if (mouseClicked = true) {
         spelStatus = SPELEN
     }
@@ -496,13 +445,10 @@ switch (spelStatus) {
     case SPELEN:
       background(255, 253, 186);
 
-<<<<<<< HEAD
-=======
       
 
  
 
->>>>>>> 58b5fb130fb303363b10e11c0cc79db22cff6ba4
       beweegVijand();
 
       //plaatje kers
@@ -513,15 +459,10 @@ switch (spelStatus) {
     for (var teller = 0; teller < vijandenX3.length; teller++) {
       image(plaatjePeer, vijandenX3[teller], vijandenY3[teller], PEERBREEDTE, PEERHOOGTE);
     }*/
+    
 
-var teruggeefwaarde = checkVijandGeraakt();
-    if (teruggeefwaarde !== false) {
 
-        if (teruggeefwaarde[0] === "kogel") {
-          vijandenX1.splice(geraakt[1], 1);
-          vijandenY1.splice(geraakt[1], 1);
-        } 
-}
+
 
 var geraakt = checkSpelerGeraakt();
     if (geraakt !== false) {
@@ -547,51 +488,36 @@ var geraakt = checkSpelerGeraakt();
         }
       }
 
-<<<<<<< HEAD
     tekenVeld();
     tekenVijanden();
-    tekenKogel();
-=======
+
  
-
-
-      
-
-      tekenVijanden();
->>>>>>> 58b5fb130fb303363b10e11c0cc79db22cff6ba4
-
-for (var teller = 0; teller < kogelX.length; teller++) {
-
+tekenKogels();
+ for (var teller = 0; teller < kogelsX.length; teller++) {
         // y waarde updaten: kogel moet stukje verder omhoog
-        kogelY[teller] = kogelY[teller] - 5;
+        kogelsY[teller] = kogelsY[teller] - 5;
 
         // als kogel aan bovenkant uit beeld is
         // (d.w.z. als de kogel meer dan de helft van z'n
         // diameter boven de bovenkant is),
         // dan coordinaten uit arrays halen
 
-        if (kogelY[teller] < 0 - kogelDiameter / 2) {
-          verwijderKogel(teller);
-
-        // omdat we een element uit de array hebben gehaald
-        // klopt teller i niet meer (we zouden er nu een overslaan)
-        // dus dat corrigeren we:
-
-            teller = teller - 1;
-        }
     }
+
+      
+
+      tekenVijanden();
+
+
 
       tekenSpeler(spelerX, spelerY);
       tekenScore();
 
-<<<<<<< HEAD
-=======
  
 
 
     
 
->>>>>>> 58b5fb130fb303363b10e11c0cc79db22cff6ba4
       if (checkGameOver()) {
         spelStatus = GAMEOVER;
       }
