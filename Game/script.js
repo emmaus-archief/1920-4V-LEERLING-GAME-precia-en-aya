@@ -64,6 +64,7 @@ var vijandenY2 = []; // y-positie van kers
 var vijandenY3 = []; // y-positie van peer
 var vijandenY4 = []; // y-positie van ananas
 
+
 var vijandenSnelheid = [];
 
 var score = 0; // aantal behaalde punten
@@ -396,6 +397,21 @@ function setup() {
 
 var resetSpel = function() {
     score = 0;
+    for (var teller = 0; teller < vijandenY1.length; teller++) {
+        vijandenY1[teller] = 0;
+    }
+
+    for (var teller = 0; teller < vijandenY2.length; teller++) {
+        vijandenY2[teller] = 0;
+    }
+
+    for (var teller = 0; teller < vijandenY3.length; teller++) {
+        vijandenY3[teller] = 0;
+    }
+     
+    for (var teller = 0; teller < vijandenY4.length; teller++) {
+        vijandenY4[teller] = 0;
+    }
 
 }
 
@@ -409,6 +425,8 @@ var restart = function() {
     spelStatus = SPELEN; 
   }
   resetSpel();
+
+  
 }
 
 function mouseClicked () {
