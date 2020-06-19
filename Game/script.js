@@ -315,6 +315,25 @@ function setup() {
 
 }
 
+var resetSpel = function() {
+    score = 0;
+    beweegvijand(); 
+    vijandenY1 =[];
+    vijandenX1 = [];
+}
+
+var restart = function() {
+  fill(255, 0, 0);  
+  rect(470, 370, 300, 100);
+  fill(0, 0, 0);
+  textSize(50);
+  text("restart", 550, 440);  
+  if(mouseX > 470 && mouseX < 770 && mouseY > 370 && mouseY < 470 && mouseIsPressed) { // als je op opnieuw spelen klikt
+    spelStatus = SPELEN; 
+  }
+  resetSpel();
+}
+
 /**
  * draw
  * de code in deze functie wordt meerdere keren per seconde
@@ -328,6 +347,8 @@ function draw() {
 
 
       beweegVijand();
+
+
 
 
       //plaatje kers
@@ -389,7 +410,7 @@ function draw() {
       textSize(50);
       text("Jammer, probeer het nog eens!", 300, 350);
     
-      opnieuwSpelen();
+      restart();
 
       break;
   }
