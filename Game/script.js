@@ -58,17 +58,17 @@ const APPELBREEDTE = 50;
 
 const APPELHOOGTE = 55;
 
-const KERSBREEDTE = 200;
+const KERSBREEDTE = 30;
 
-const KERSHOOGTE = 200;
+const KERSHOOGTE = 60;
 
-const PEERBREEDTE = 120;
+const PEERBREEDTE = 40;
 
-const PEERHOOGTE = 120;
+const PEERHOOGTE = 80;
 
-const ANANASBREEDTE = 70;
+const ANANASBREEDTE = 50;
 
-const ANANASHOOGTE = 130;
+const ANANASHOOGTE = 110;
 
  
 
@@ -626,6 +626,8 @@ function preload() {
 
     plaatjeAnanas = loadImage("afbeeldingen/ananas.png");
 
+    achtergrond = loadImage("afbeeldingen/farm.jpg");
+
 }
 
  
@@ -814,6 +816,7 @@ switch (spelStatus) {
 
       background(136, 255, 122);
 
+
       fill(0, 0, 0);
 
       textSize(40);
@@ -851,6 +854,8 @@ switch (spelStatus) {
  
 
       background(255, 253, 186);
+
+      
 
  
 
@@ -948,7 +953,8 @@ if (teruggeefwaarde !== false) {
 
  
 
-      tekenVeld();
+
+      
 
       tekenVijanden();
 
@@ -995,6 +1001,7 @@ if (teruggeefwaarde !== false) {
       tekenScore();
 
  
+
 
     
 
