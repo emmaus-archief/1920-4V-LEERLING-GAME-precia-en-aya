@@ -317,9 +317,7 @@ function setup() {
 
 var resetSpel = function() {
     score = 0;
-    beweegvijand(); 
-    vijandenY1 =[];
-    vijandenX1 = [];
+
 }
 
 var restart = function() {
